@@ -137,6 +137,75 @@ puts "Tarea 17. Hecho."
 
 
 # Tarea 18, .
+us3 = User.where(first_name: "Usuario 3").first
 
-#puts "Tarea 18, Hecho."
+Blog.all.each do |t|
+  p = Post.new
+  # p.blog = Blog.find(t.id)
+  # p.blog = Blog.where(id: t.id).first
+  p.blog = t
+  p.user = us3
+  p.title = "Un título"
+  p.content = "Un contenido cualquiera"
+  p.save
+end
+# Contar el numero de posts que tiene el usuario 3
+puts "#{Post.where(user: us3).count}"
+puts "#{us3.post.count}"
+puts "Tarea 18, Hecho."
 
+
+# Tarea 19, Haz que el tercer usuario cree 2 mensajes para la primera publicación creada y 3 mensajes para la segunda publicación creada.
+#primpub = Post.all.first
+primpub = Post.all[0]
+secpub = Post.all[1]
+
+1.upto(2) do |t|
+  m = Message.new
+  m.post = primpub
+  m.user = us3
+  m.author = "algun author"
+  m.message = "Aquí va algun mensaje"
+  m.save
+end
+
+1.upto(3) do |t|
+  m = Message.new
+  m.post = secpub
+  m.user = us3
+  m.author = "algun author"
+  m.message = "Aquí va algun mensaje"
+  m.save
+end
+# Contar el número de mensajes del usuario 3
+puts us3.message.count
+puts Message.where(user: us3).count
+puts "Tarea 19, Hecho."
+
+# Tarea 20, Haz que el cuarto usuario cree 3 mensajes para la última publicación que tu creaste.
+
+us4 = User.where(first_name: "Usuario 4").first
+ulpub = Post.all.last
+
+1.upto(3) do |t|
+  m = Message.new
+  m.post = ulpub
+  m.user = us4
+  m.author = "Algun author"
+  m.message = "Algun mensaje x"
+  m.save
+end
+# Contar los mensajes del usuario 4
+puts "Mensajes: #{us4.message.count}"
+puts Message.where(user: us4).count
+puts "Tarea 20, Hecho."
+
+
+# Tarea 21, .
+
+#puts "Tarea 21, Hecho."
+
+
+# Tarea 22, .
+
+#puts "Tarea 22, Hecho."
