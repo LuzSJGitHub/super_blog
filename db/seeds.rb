@@ -182,6 +182,7 @@ puts us3.message.count
 puts Message.where(user: us3).count
 puts "Tarea 19, Hecho."
 
+
 # Tarea 20, Haz que el cuarto usuario cree 3 mensajes para la última publicación que tu creaste.
 
 us4 = User.where(first_name: "Usuario 4").first
@@ -201,11 +202,68 @@ puts Message.where(user: us4).count
 puts "Tarea 20, Hecho."
 
 
-# Tarea 21, .
+# Tarea 21, Cambie el propietario de la 2 publicación para que sea el último usuario..
+#Captura al segundo Post en la variable po2
+po2 = Post.all[1]
+puts "Antes => #{po2.user.first_name}"
+#Captura al ultimo usuario en la variable ulu
+ulu = User.all.last
+#Actualizar usuario
+po2.user = ulu
+po2.save
+puts "Después => #{po2.user.first_name}"
+puts "Tarea 21, Hecho."
 
-#puts "Tarea 21, Hecho."
+
+# Tarea 22, Cambie el contenido de la segunda publicación por algo diferente.
+po2 = Post.all[1]
+po2.content = "Un nuevo contenido modificado"
+po2.save
+puts po2.errors.full_messages
+puts "Content: #{po2.content}"
+puts "Tarea 22, Hecho."
 
 
-# Tarea 22, .
+# Tarea 23, Obtenga todos los blog que son propiedad del tercer usuario (haz que esto funcione con un simple Usuario.find(3).blogs).
+us3 = User.find(3)
+owners = us3.owner
+blog_ids = owners.pluck(:blog_id) # => [45, 3, 23]
+blogs = Blog.where(id: blog_ids)
+puts "Blogs del usuario 3: #{blogs}"
+puts "Tarea 23, Hecho."
 
-#puts "Tarea 22, Hecho."
+
+# Tarea 24, Obtenga todas las publicaciones que fueron creadas por el tercer usuario.
+us3 = User.find(3)
+us3 = User.where(first_name: "Usuario 3").first
+puts us3.post #has_many
+puts Post.where(user: us3) #belongs_to
+puts "Tarea 24, Hecho."
+
+
+# Tarea 25, Obtenga todos los mensajes escritos por el tercer usuario.
+us3 = User.find(3)
+us3 = User.where(first_name: "Usuario 3").first
+puts us3.message #has_many
+puts Message.where(user: us3) #belongs_to
+puts "Tarea 25, Hecho."
+
+
+# Tarea 26, .
+
+#puts "Tarea 26, Hecho."
+
+
+# Tarea 27, .
+
+#puts "Tarea 27, Hecho."
+
+
+# Tarea 28, .
+
+#puts "Tarea 28, Hecho."
+
+
+# Tarea 29, .
+
+#puts "Tarea 29, Hecho."
